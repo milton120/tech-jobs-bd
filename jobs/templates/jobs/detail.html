@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'jobs/base.html' %}
+
+{% block body %}
+
+    <h1>Job Detail</h1>
+    <h2> Company Name : {{ object.company }}</h2>
+    <h3>Job Title : {{ object.job_title }}</h3>
+    <h4> job Requirement </h4>
+    <p>{{ object.job_requirement }}</p>
+
+{% endblock %}

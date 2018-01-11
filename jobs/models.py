@@ -1,20 +1,26 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.conf import settings
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
 
 class Company(models.Model):
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50)
     about = models.TextField("about company")
     location = models.CharField(max_length=200)
     verified = models.BooleanField(default=False)
     total_job_posted = models.IntegerField(default=0)
     company_website = models.URLField(default='')
+
+    def __str__(self):
+        return self.name
+
+    def slug(self):
+        return slugify(self.name)
 
 
 class Category(models.Model):
@@ -46,19 +52,11 @@ class JobPost(models.Model):
     def __str__(self):
         return self.job_title
 
+    def get_absolute_url(self):
+        return reverse('jobs:detail', kwargs={'pk': self.pk})
+
     def slug(self):
         return slugify(self.job_title)
-
-
-@receiver(post_save, sender=User)
-def create_user_company(sender, instance, created, **kwargs):
-    if created:
-        Company.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_company(sender, instance, **kwargs):
-    instance.company.save()
 
 
 
