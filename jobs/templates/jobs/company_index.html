@@ -1,0 +1,15 @@
+{% extends 'jobs/base.html' %}
+
+{% block body %}
+
+    <ul>
+        {% for company in all_companies %}
+            <li>
+                <a href="{% url 'jobs:company-detail' company.id %}">{{ company.name }}</a>
+                <p> about : {{ company.about }}</p>
+                <p>Location : {{ company.location }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

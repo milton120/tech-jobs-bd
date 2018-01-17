@@ -21,7 +21,7 @@ class CustomUserManager(BaseUserManager):
 
         return user   # returning user object after saving
 
-    def create_stffuser(self, email, password=None):
+    def create_staffuser(self, email, password=None):
         user = self.create_user(
             email,
             password,

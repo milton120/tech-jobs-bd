@@ -6,6 +6,6 @@
     <h2> Company Name : {{ object.company }}</h2>
     <h3>Job Title : {{ object.job_title }}</h3>
     <h4> job Requirement </h4>
-    <p>{{ object.job_requirement }}</p>
+    <p>{{ object.job_requirement | linebreaks }}</p>
 
 {% endblock %}

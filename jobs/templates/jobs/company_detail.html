@@ -1,0 +1,11 @@
+{% extends 'jobs/base.html' %}
+
+{% block body %}
+
+    <h1>Company Detail</h1>
+    <h2> Company Name : {{ object.name }}</h2>
+    <h3>About : {{ object.about }}</h3>
+    <h4> Total job posted </h4>
+    <p>{{ object.total_job_posted }}</p>
+
+{% endblock %}

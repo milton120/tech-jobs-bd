@@ -1,0 +1,16 @@
+{% extends 'jobs/base.html' %}
+
+{% block body %}
+
+    <ul>
+        {% for job in all_jobs %}
+            <li>
+                <a href="{% url 'jobs:detail' job.id %}">{{ job.job_title }}</a>
+                <p> Salary : {{ job.salary_range }}</p>
+                <p> Experience :{{ job.experience_needed }}</p>
+                <p>Location : {{ job.job_location }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
